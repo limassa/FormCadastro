@@ -3,6 +3,7 @@ package stepsDefinitions;
 import static org.junit.Assert.assertEquals;
 
 import java.awt.peer.LabelPeer;
+import java.io.IOException;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.pt.E;
@@ -100,7 +101,8 @@ public class HomeSteps {
 	}
 
 	@Entao("o sistema deve exibir uma tabela com os dados informados anteriormente")
-	public void validarTabela(){
+	public void validarTabela() {
 		Na(Home.class).validarTabela();
+		//Na(Home.class).imprimirRelatorio();
 	}
 }

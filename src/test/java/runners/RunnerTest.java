@@ -8,11 +8,11 @@ import io.cucumber.junit.CucumberOptions.SnippetType;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		plugin = {"pretty"},
+		plugin = {"pretty","html:target/Relatorio-html.html"},
 		features="src/test/resources/features",
 		glue = "stepsDefinitions",
 		snippets = SnippetType.CAMELCASE,
-		monochrome = true,
+		monochrome = false,
 		dryRun = false
 		)
 
