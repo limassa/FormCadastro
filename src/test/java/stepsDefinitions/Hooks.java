@@ -12,16 +12,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 public class Hooks {
 	
- @Before(order = 1, value = "@Coodesh")
+ @Before(order = 1, value = "@Stefanini")
  public void setUp() {
-	  acessarSistema(); 
+	  //acessarSistema();
 	  
   }
  
  @After()
  
  public void tearDown() throws InterruptedException {
-	 //driver.quit();
+	 driver.quit();
  }
 
 }

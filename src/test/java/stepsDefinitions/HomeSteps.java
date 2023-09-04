@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import java.awt.peer.LabelPeer;
 
+import io.cucumber.java.en.Given;
+import io.cucumber.java.pt.E;
 import org.junit.rules.TestRule;
 import org.junit.validator.PublicClassValidator;
 import org.omg.CORBA.PUBLIC_MEMBER;
@@ -15,140 +17,90 @@ import cucumber.api.java.jv.Nalika;
 import cucumber.runtime.Utils;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
+import io.cucumber.java.pt.Dado;
+import io.cucumber.java.en.Given;
 import pageObjects.Home;
 import static utils.Utils.*;
 
 public class HomeSteps {
 	
 	Home lp = new Home();
-	
-	
-	@Quando("clicar no botao OK")
-	public void acionarBotaoOkCookies() {
-		Na(Home.class).acionarBotaoOkCookies();
+
+
+	@Dado("que estou na tela de login")
+	public void verificarTela(){
+		acessarSistema();
 	}
-	
-	@And("clicar no Menu Vagas")
-	public void acionarMenuVagas() {
-		Na(Home.class).acionarMenuVagas();
+
+	@E("informar um valor {string} no campo Nome")
+	public void informarCampoNome(String nome){
+		Na(Home.class).informarCampoNome(nome);
 	}
-	
-	@And("digite a empresa {string}")
-	public void informarEmpresaVaga(String empresaVaga) {
-		Na(Home.class).digitarCampoEmpresa(empresaVaga);
-	}
-	
-	@And("clicar no botao Buscar")
-	public void acionarBotaoVagaEmpresa() {
-		Na(Home.class).acionarBotaoVagaEmpresa();
-		
-	}
-	
-	@And("clicar no botao Ver Vaga")
-	public void acionarBotaoVerVaga() {
-		Na(Home.class).acionarBotaoVerVaga();
-	}
-	
-	@And("clicar no botao Tenho Interesse")
-	public void acionarBotaoTenhoInteresse() {
-		Na(Home.class).acionarBotaoTenhoInteresse();
-	}
-	
-	
-	/*
-	@And("informar o email {string}")
-	public void informarEmail(String email) {
+
+	@E("informar um valor {string} no campo E-mail")
+	public void informarCampoEmail(String email){
 		Na(Home.class).informarCampoEmail(email);
 	}
-	
-	@And("clicar no botao Criar Login")
-	public void clicarBotaoCriarLogin() {
-		Na(Home.class).acionarBotaoCriarLogin();
+
+	@E("informar um valor {string} no campo Senha")
+	public void informarCampoSenha(String senha){
+		Na(Home.class).informarCampoSenha(senha);
 	}
-	
-	@And("selecionar a opcao Title")
-	public void selecionarOpcaoTitle() {
-		Na(Home.class).clicarRBMr();
+
+	@Quando("clicar em Cadastrar")
+	public void acionarBotaoCadastrar(){
+		Na(Home.class).acionarBotaoCadastro();
 	}
-	
-	@And("informar o First Name {string}")
-	public void informarFirstName(String firstName) {
-		Na(Home.class).informarPrimeiroNome(firstName);
+
+	@E("clicar no botao Cadastrar")
+	public void acionarBotaoCadastrarAnd(){
+		Na(Home.class).acionarBotaoCadastro();
 	}
-	
-	@And("informar o Last Name {string}")
-	public void informarLastName(String lastName) {
-		Na(Home.class).informarSegundoNome(lastName);
+
+	@Entao("o sistema deve exibir uma mensagem 'Por favor, insira um nome completo'")
+	public void erroNomeCompleto(){
+		Na(Home.class).validarErroNomeCompleto();
 	}
-	
-	@And("informar o Password {string}")
-	public void informarSenha(String senha) {
-		Na(Home.class).informarSenha(senha);
+
+	@Entao("o sistema deve exibir uma mensagem 'Por favor, insira um e-mail Valido'")
+	public void erroEmailCompleto(){
+		Na(Home.class).validarErroEmailValido();
 	}
-	
-	@And("clicar no combo Dia")
-	public void selecionarOpcao() {
-		Na(Home.class).selecionarDia();
+
+	@Entao("o sistema deve exibir uma mensagem 'A senha deve conter ao menos 8 caracteres'")
+	public void erroSenhaValida(){
+		Na(Home.class).validarErroSenhaValida();
 	}
-	
-	@And("selecionar o Dia {int}")
-	public void mudarData(Integer dia) {
-		Na(Home.class).selecionarOpcaoDia(dia);
+
+	@Entao("o sistema deve exibir uma mensagem informando que o campo Nome nao foi preenchido")
+	public void erroNome(){
+		Na(Home.class).validarErroNome();
 	}
-	
-	@And("clicar no combo Mes")
-	public void selecionarComboMes() {
-		Na(Home.class).selecionarMes();
+
+	@Entao("o sistema deve exibir uma mensagem informando que o campo E-mail nao foi preenchido")
+	public void erroEmail(){
+		Na(Home.class).validarErroEmail();
 	}
-	
-	@And("selecionar o Mes {string}")
-	public void mudarMes(String mes) {
-		Na(Home.class).selecionarOpcaoMes(mes);
+
+	@Entao("o sistema deve exibir uma mensagem informando que o campo Senha nao foi preenchido")
+	public void erroSenha(){
+		Na(Home.class).validarErroSenha();
 	}
-	
-	@And("selecionar o ano {int}")
-	public void mudarAno(Integer ano) {
-		Na(Home.class).selecionarOpcaoAno(ano);
+
+	@Entao("o sistema deve exibir uma mensagem informando que os campos nao estao preenchidos")
+	public void erroCampos(){
+		Na(Home.class).validarErroNome();
+		Na(Home.class).validarErroEmail();
+		Na(Home.class).validarErroSenha();
 	}
-	
-	@And("informar a Company {string}")
-	public void informarCompany(String company) {
-		Na(Home.class).informarCompany(company);
+
+	@Quando("clicar em Excluir")
+	public void acionarBotaoExcluir(){
+		Na(Home.class).acionarBotaoExcluir();
 	}
-	
-	@And("informar o Address {string}")
-	public void informarAddress(String address) {
-		Na(Home.class).informarAddress(address);
+
+	@Entao("o sistema deve exibir uma tabela com os dados informados anteriormente")
+	public void validarTabela(){
+		Na(Home.class).validarTabela();
 	}
-	
-	@And("informar o Address2 {string}")
-	public void informarAddress2(String address2) {
-		Na(Home.class).informarAddress2(address2);
-	}
-	
-	@And("informar City {string}")
-	public void informarCity(String city) {
-		Na(Home.class).informarCity(city);
-	}
-	
-	@And("selecionar o State {string}")
-	public void mudarState(String state) {
-		Na(Home.class).selecionarOpcaoState(state);
-	}
-	
-	@And("informar o Postal Code {string}")
-	public void informarPostalCode(String postalCode) {
-		Na(Home.class).informarPostalCode(postalCode);
-	}
-	
-	@And("informar Mobile Phone {string}")
-	public void informarMobilePhone(String mobilePhone) {
-		Na(Home.class).informarMobilePhone(mobilePhone);
-	}
-	
-	@And("clicar no botao Registrar")
-	public void clicarBotaoRegistrar() {
-		Na(Home.class).acionarBotaoRegistrar();
-	}
-	*/
 }

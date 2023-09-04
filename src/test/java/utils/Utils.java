@@ -17,11 +17,11 @@ public class Utils {
 		System.setProperty("webdriver.chrome.driver","C:\\Driver\\chromedriver.exe");
 		//System.setProperty("webdriver.chrome.driver","/chromedriver.exe");
 		driver = new ChromeDriver();
+
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
-		
-		//driver.get("https://beta.coodesh.com/");
-		driver.get("https://coodesh.com/");
+
+		driver.get("https://cadastro-de-usuarios.s3.us-east-1.amazonaws.com/index.html");
 	}
 	
 	
