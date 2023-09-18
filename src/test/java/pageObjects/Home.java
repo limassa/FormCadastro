@@ -30,93 +30,38 @@ import java.io.IOException;
 
 public class Home {
 
-	@FindBy(name = "name")
-	private WebElement campoNome;
+	@FindBy(xpath = "//*[@id=\'__next\']/div/main/section[1]/div[2]/header/div/div[3]/nav/ul/li[1]/div[1]/a")
+	private WebElement campoDepartamento;
 
-	@FindBy(name = "email")
-	private WebElement campoEmail;
+	@FindBy(xpath = "//*[@id=\'__next\']/div/main/section[1]/div[2]/header/div/div[3]/nav/ul/li[1]/div[2]/div/div/div[1]/ul/li[2]/a")
+	private WebElement segundoDepartamento;
 
-	@FindBy(name = "password")
-	private WebElement campoSenha;
+	@FindBy(xpath = "//*[@id=\'__next\']/div/main/section[4]/div[4]/div/ul/li[3]/a/div[2]/img")
+	private WebElement terceiroProduto;
 
-	@FindBy(id = "register")
-	private WebElement botaoCadastrar;
+	@FindBy(xpath = "//*[@id=\'__next\']/div/main/section[4]/div[8]/div[2]/button")
+	private WebElement botaoAdicionarCarrinho;
 
-	@FindBy(id = "removeUser1")
-	private WebElement botaoExcluir;
-
-	public void acionarBotaoCadastro() {
-		botaoCadastrar.click();
+	public void acionarCampoDepartamento() {
+		campoDepartamento.click();
 	}
 
-	public void acionarBotaoExcluir() {
-		botaoExcluir.click();
+	public void acionarSegundoDepartamento(){
+		segundoDepartamento.click();
 	}
 
-	public void informarCampoNome(String nome) {
-		campoNome.sendKeys(nome);
+	public void acionarTerceiroProduto(){
+		terceiroProduto.click();
 	}
 
-	public void informarCampoEmail(String email) {
-		campoEmail.sendKeys(email);
+	public void acionarBotaoCarrinho(){
+		botaoAdicionarCarrinho.click();
 	}
 
-	public void informarCampoSenha(String senha) {
-		campoSenha.sendKeys(senha);
+	public void validarTelaSacola(){
+		String textoTelaSacola = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div[1]")).getText();
+		assertEquals("Sacola", textoTelaSacola);
 	}
 
-	public void validarErroNomeCompleto(){
-		String erroNomeCompleto = driver.findElement(By.className("error")).getText();
-		assertEquals("Por favor, insira um nome completo.", erroNomeCompleto);
-	}
-
-	public void validarErroEmailValido(){
-		String erroEmailValido = driver.findElement(By.className("error")).getText();
-		assertEquals("Por favor, insira um e-mail válido.", erroEmailValido);
-	}
-
-	public void validarErroSenhaValida(){
-		String erroSenhaValida= driver.findElement(By.className("error")).getText();
-		assertEquals("A senha deve conter ao menos 8 caracteres.", erroSenhaValida);
-	}
-
-	public void validarErroNome(){
-		String erroNome = driver.findElement(By.className("error")).getText();
-		assertEquals("O campo Nome é obrigatório.", erroNome);
-	}
-
-	public void validarErroEmail(){
-		String erroEmail = driver.findElement(By.className("error")).getText();
-		assertEquals("O campo E-mail é obrigatório.", erroEmail);
-	}
-
-	public void validarErroSenha(){
-		String erroSenha = driver.findElement(By.className("error")).getText();
-		assertEquals("O campo Senha é obrigatório.", erroSenha);
-	}
-
-	public void validarTabela(){
-		String existeTabela = driver.findElement(By.className("table-title")).getText();
-		assertEquals("Usuários cadastrados", existeTabela);
-	}
-
-	public void validarTabelaNaoExiste(){
-		String naoExisteTabela = driver.findElement(By.className("table-title")).getText();
-		assertEquals("", naoExisteTabela);
-	}
-
-	/*
-	public void imprimirRelatorio() throws IOException {
-		File printFinal = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(printFinal, new File("target/evidencia.png"));
-	}
-*/
-	public void realizarCadastro(String nome, String email, String senha) {
-		acionarBotaoCadastro();
-		informarCampoNome(nome);
-		informarCampoEmail(email);
-		informarCampoSenha(senha);
-		acionarBotaoExcluir();
-	}
 
 }

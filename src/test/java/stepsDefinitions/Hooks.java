@@ -12,7 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 public class Hooks {
 	
- @Before(order = 1, value = "@Stefanini")
+ @Before(order = 1, value = "@Aiqfome")
  public void setUp() {
 	  //acessarSistema();
 	  
@@ -21,7 +21,7 @@ public class Hooks {
  @After()
  
  public void tearDown() throws InterruptedException {
-	 driver.quit();
+	 //driver.quit();
  }
 
 }
